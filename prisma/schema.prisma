@@ -1,0 +1,589 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model banner_2015 {
+  id       Int     @id @default(autoincrement())
+  pic      String  @db.VarChar(200)
+  link     String  @db.VarChar(200)
+  lorder   Boolean
+  btype    Boolean
+  name     String? @db.VarChar(255)
+  bg_color String? @db.VarChar(20)
+
+  @@map("2015_banner")
+}
+
+model banner_link_2015 {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  news_pic String  @db.LongText
+  link     String  @db.LongText
+  stat     Int
+  bg_color String? @db.VarChar(20)
+
+  @@map("2015_banner_link")
+}
+
+model cms_index_2015 {
+  id        Int    @id @default(autoincrement())
+  name_th   String @db.VarChar(500)
+  name_en   String @db.VarChar(500)
+  detail_en String @db.Text
+  detail_th String @db.Text
+  stat      Int    @default(0)
+  menu_type String @db.VarChar(255)
+  rank      Int
+  pic       String @db.VarChar(255)
+
+  @@map("2015_cms_index")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model easyknow_category {
+  ec_id          Int      @id @default(autoincrement())
+  content_type   Boolean
+  ec_name        String?  @db.VarChar(255)
+  ec_image       String?  @db.VarChar(255)
+  ec_order       Int      @default(0)
+  ec_status      Boolean
+  ec_create_date DateTime @db.DateTime(0)
+  ec_update_date DateTime @db.DateTime(0)
+
+  @@map("2015_easyknow_category")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model kasetdata_banner {
+  kasetdata_banner_id       Int      @id @default(autoincrement())
+  kasetdata_banner_title    String   @db.VarChar(255)
+  kasetdata_banner_title_en String?  @db.VarChar(255)
+  kasetdata_banner_image    String?  @db.VarChar(255)
+  kasetdata_banner_link     String?  @db.VarChar(255)
+  kasetdata_banner_status   Boolean  @default(false)
+  kasetdata_banner_order    Int      @default(0)
+  kasetdata_banner_cdate    DateTime @db.DateTime(0)
+  kasetdata_banner_udate    DateTime @db.DateTime(0)
+  kaset_group               String?  @db.VarChar(255)
+  kaset_group_id            Int
+
+  @@map("2015_kasetdata_banner")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model kasetdata_banner_20230202 {
+  kasetdata_banner_id       Int      @id @default(autoincrement())
+  kasetdata_banner_title    String   @db.VarChar(255)
+  kasetdata_banner_title_en String?  @db.VarChar(255)
+  kasetdata_banner_image    String?  @db.VarChar(255)
+  kasetdata_banner_link     String?  @db.VarChar(255)
+  kasetdata_banner_status   Boolean  @default(false)
+  kasetdata_banner_order    Int      @default(0)
+  kasetdata_banner_cdate    DateTime @db.DateTime(0)
+  kasetdata_banner_udate    DateTime @db.DateTime(0)
+  kaset_group               String?  @db.VarChar(255)
+  kaset_group_id            Int
+
+  @@map("2015_kasetdata_banner_20230202")
+}
+
+model kasetdata_category {
+  category_id    Int     @id @default(autoincrement())
+  category_name  String? @db.VarChar(255)
+  category_group String? @db.VarChar(255)
+  category_rank  Int?
+  category_image String? @db.VarChar(255)
+  category_link  String? @db.VarChar(255)
+
+  @@map("2015_kasetdata_category")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order {
+  order_id               Int      @id @default(autoincrement())
+  name                   String?  @db.VarChar(500)
+  msisdn                 String?  @db.VarChar(20)
+  email                  String?  @db.VarChar(255)
+  location               String?  @db.Text
+  total_amount           Int      @default(0)
+  total_price            Int      @default(0)
+  inform_transfer_status Boolean  @default(false)
+  cdate                  DateTime @db.DateTime(0)
+  udate                  DateTime @db.DateTime(0)
+
+  @@map("2015_order")
+}
+
+model order_notify {
+  notify_id        Int       @id @default(autoincrement())
+  order_id         Int
+  payment_channel  String?   @db.VarChar(255)
+  price            Int
+  notify_date      DateTime? @db.Date
+  notify_time      String?   @db.VarChar(50)
+  shipping_address String?   @db.Text
+  name             String?   @db.VarChar(255)
+  email            String?   @db.VarChar(255)
+  msisdn           String?   @db.VarChar(50)
+  attach_file      String?   @db.VarChar(255)
+  cdate            DateTime  @db.DateTime(0)
+  udate            DateTime  @db.DateTime(0)
+
+  @@map("2015_order_notify")
+}
+
+model order_product {
+  order_product_id Int      @id @default(autoincrement())
+  order_id         Int
+  product_id       Int
+  amount           Int?
+  price            Int
+  cdate            DateTime @db.DateTime(0)
+
+  @@map("2015_order_product")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model pre_loading_page {
+  pre_loading_page_id Int      @id @default(autoincrement())
+  page_name           String   @db.VarChar(255)
+  image               String?  @db.VarChar(255)
+  bg_color            String?  @db.VarChar(50)
+  link                String?  @db.VarChar(255)
+  status              Boolean  @default(false)
+  cdate               DateTime @db.DateTime(0)
+  udate               DateTime @db.DateTime(0)
+
+  @@map("2015_pre_loading_page")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model product {
+  product_id          Int      @id @default(autoincrement())
+  product_name        String   @db.VarChar(255)
+  product_code        String?  @db.VarChar(50)
+  product_type        String?  @db.VarChar(50)
+  product_tags        String?  @db.Text
+  product_image       String?  @db.VarChar(255)
+  product_description String?  @db.Text
+  product_price       Int      @default(0)
+  product_unit_name   String?  @db.VarChar(100)
+  product_max_unit    Int      @default(0)
+  product_status      Boolean  @default(false)
+  cdate               DateTime @db.DateTime(0)
+  udate               DateTime @db.DateTime(0)
+
+  @@map("2015_product")
+}
+
+model product_images {
+  product_image_id   Int      @id @default(autoincrement())
+  product_id         Int
+  product_image_name String?  @db.VarChar(255)
+  cdate              DateTime @db.DateTime(0)
+
+  @@map("2015_product_images")
+}
+
+model product_info {
+  product_info_id   Int      @id @default(autoincrement())
+  product_id        Int
+  product_info_text String?  @db.Text
+  cdate             DateTime @db.DateTime(0)
+
+  @@map("2015_product_info")
+}
+
+model researcher {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  name_en  String? @db.VarChar(255)
+  news_pic String  @db.LongText
+  stat     Int
+  link     String  @db.LongText
+
+  @@map("2015_researcher")
+}
+
+model service {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  name_en  String? @db.VarChar(255)
+  news_pic String? @db.LongText
+  stat     Int
+  link     String  @db.LongText
+
+  @@map("2015_service")
+}
+
+model slide {
+  id           Int     @id @default(autoincrement())
+  pic          String  @db.VarChar(200)
+  link         String  @db.VarChar(200)
+  pstatus      Int     @default(0) @db.TinyInt
+  lorder       Boolean
+  slide_status Int?    @default(1)
+  title        String? @db.VarChar(1000)
+  description  String? @db.VarChar(1000)
+
+  @@map("2015_slide")
+}
+
+model addrss {
+  id      Int      @id @default(autoincrement())
+  name    String   @db.VarChar(100)
+  link    String   @db.Text
+  detail  String   @db.Text
+  datein  DateTime @db.Date
+  pstatus Int      @default(1) @db.TinyInt
+}
+
+model admin_user {
+  admin_id       Int     @id @default(autoincrement())
+  admin_code     String? @db.VarChar(255)
+  admin_password String? @db.VarChar(255)
+  admin_g        Int
+}
+
+model anniversarius_arda18 {
+  id       Int     @id @default(autoincrement())
+  title    String? @db.VarChar(255)
+  fname    String? @db.VarChar(255)
+  position String? @db.VarChar(255)
+  org_name String? @db.VarChar(255)
+  bless    String? @db.Text
+}
+
+model arda_member {
+  id       Int     @id @default(autoincrement())
+  title    String? @db.VarChar(255)
+  name     String? @db.VarChar(255)
+  lname    String? @db.VarChar(255)
+  position String? @db.VarChar(255)
+  phone    String? @db.VarChar(255)
+  email    String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model arda_sys_use {
+  id          Int      @id @default(autoincrement())
+  name_sys    String?  @db.VarChar(255)
+  surname_sys String?  @db.VarChar(255)
+  sys_type    Boolean?
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model banner {
+  id     Int     @id @default(autoincrement())
+  pic    String  @db.VarChar(200)
+  link   String  @db.VarChar(200)
+  lorder Boolean
+  btype  Boolean
+}
+
+model banner_link {
+  id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(255)
+  news_pic String @db.LongText
+  link     String @db.LongText
+  stat     Int
+}
+
+model banner_p {
+  id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(255)
+  news_pic String @db.LongText
+  stat     Int
+  link     String @db.LongText
+}
+
+model board_detail {
+  id        Int     @id @default(autoincrement())
+  detail    String? @db.VarChar(255)
+  year_show String? @db.VarChar(11)
+  rank      Int?
+  board_id  Int?
+}
+
+model board_detail_th {
+  id         Int      @id @default(autoincrement())
+  detail     String?  @db.VarChar(255)
+  year_show  String?  @db.VarChar(11)
+  rank       Int?
+  board_id   Int?
+  detailtype Boolean? @default(true)
+}
+
+model board_education {
+  edu_id   Int     @id @default(autoincrement())
+  edu_name String? @db.VarChar(255)
+  edu_en   String? @db.VarChar(255)
+  edu_rank Int?    @db.TinyInt
+  board_id Int?
+}
+
+model board_experience {
+  exp_id   Int     @id @default(autoincrement())
+  exp_name String? @db.VarChar(255)
+  exp_en   String? @db.VarChar(255)
+  exp_rank Int?    @db.TinyInt
+  board_id Int?
+}
+
+model cms_index {
+  id        Int    @id @default(autoincrement())
+  name_th   String @db.VarChar(500)
+  name_en   String @db.VarChar(500)
+  detail_en String @db.Text
+  detail_th String @db.Text
+  stat      Int    @default(0)
+  menu_type String @db.VarChar(255)
+  rank      Int
+  pic       String @db.VarChar(255)
+}
+
+model easy_cat {
+  cid      Boolean  @id
+  cname    String   @db.VarChar(100)
+  files    String   @db.VarChar(100)
+  datein   DateTime @db.Date
+  c_order  Boolean  @default(true)
+  c_status Boolean  @default(true)
+}
+
+model easy_cat_6 {
+  cid      Boolean  @id
+  cname    String   @db.VarChar(100)
+  files    String   @db.VarChar(100)
+  datein   DateTime @db.Date
+  c_order  Boolean  @default(true)
+  c_status Boolean  @default(true)
+}
+
+model easyknow {
+  id            Int      @id @default(autoincrement())
+  type          Boolean
+  cat           Boolean  @default(false)
+  name          String   @db.VarChar(200)
+  name_en       String?  @db.VarChar(200)
+  detail        String   @db.Text
+  eby           String   @db.VarChar(200)
+  datein        DateTime @db.Date
+  lenght        String   @db.VarChar(10)
+  visited       Int
+  files         String   @db.VarChar(200)
+  filemp        String   @db.VarChar(20)
+  e_order       Boolean  @default(false)
+  estatus       Int      @default(1)
+  v_type        String?  @db.VarChar(255)
+  total_points  Int      @default(0)
+  rating_number Int      @default(0)
+  cate_service  Int?     @db.TinyInt
+}
+
+model es_plan_performance {
+  id          Int       @id @default(autoincrement())
+  file_name   String?   @db.VarChar(255)
+  update_date DateTime? @db.DateTime(0)
+  text_name   String?   @db.VarChar(255)
+}
+
+model es_user {
+  id    Int     @id @default(autoincrement())
+  email String? @db.VarChar(255)
+  pwd_u String? @db.VarChar(255)
+}
+
+model eservice_report {
+  id        Int       @id @default(autoincrement())
+  name      String?   @db.VarChar(255)
+  file_name String?   @db.VarChar(255)
+  file_date DateTime? @db.Date
+  branch    String?   @db.VarChar(255)
+  data_type Boolean?
+  data_year String?   @db.VarChar(255)
+}
+
+model expert_member {
+  id        Int     @id
+  title     String? @db.VarChar(255)
+  name      String? @db.VarChar(255)
+  lname     String? @db.VarChar(255)
+  expertise String? @db.VarChar(255)
+}
+
+model faq {
+  id       Int     @id @default(autoincrement())
+  question String? @db.VarChar(255)
+  answer   String? @db.LongText
+  stat     Int?    @default(0)
+  pstatus  Int     @default(1) @db.TinyInt
+}
+
+model fund_download {
+  id     Int     @id @default(autoincrement())
+  name   String? @db.VarChar(255)
+  rank   Int?
+  status Int?    @default(0)
+}
+
+model internal_contact {
+  id    Int     @id @default(autoincrement())
+  name  String? @db.VarChar(255)
+  tel   String? @db.VarChar(255)
+  rank  Int?
+  group String? @db.VarChar(255)
+}
+
+model ip_stat_fix {
+  id        Int       @id @default(autoincrement())
+  num_page  Int?
+  num_uni   Int?
+  date_val  DateTime? @db.Date
+  data_type String?   @db.VarChar(30)
+}
+
+model ip_stat_fix_full {
+  id        Int       @id @default(autoincrement())
+  num_page  Int?
+  num_uni   Int?
+  date_val  DateTime? @db.Date
+  data_type String?   @db.VarChar(30)
+}
+
+model law_data {
+  id        Int     @id @default(autoincrement())
+  name      String? @db.VarChar(255)
+  law_type  String? @db.VarChar(255)
+  filedata  String? @db.VarChar(255)
+  type_data String? @db.VarChar(255)
+}
+
+model link_ba {
+  id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(255)
+  news_pic String @db.LongText
+  stat     Int
+  link     String @db.LongText
+}
+
+model mask_free {
+  id            Int     @id @default(autoincrement())
+  regis_name    String? @db.VarChar(255)
+  regis_surname String? @db.VarChar(255)
+  regis_email   String? @db.VarChar(255)
+  regis_phone   String? @db.VarChar(255)
+  regis_address String? @db.VarChar(255)
+}
+
+model new_arda {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(255)
+  detail   String   @db.Text
+  datein   DateTime @db.Date
+  pstatus  Int      @db.TinyInt
+  news_url String?  @db.VarChar(1000)
+}
+
+model news {
+  id          Int       @id @default(autoincrement())
+  name        String?   @db.VarChar(255)
+  name_en     String    @db.VarChar(255)
+  pic         String    @db.VarChar(255)
+  detail      String?   @db.Text
+  detail_en   String    @db.Text
+  datein      DateTime  @db.Date
+  user_create Int
+  user_update Int?
+  update_date DateTime? @db.DateTime(0)
+}
+
+model news_activate {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  name_en     String    @db.VarChar(255)
+  pic         String    @db.VarChar(30)
+  detail      String    @db.Text
+  detail_en   String    @db.Text
+  datein      DateTime  @db.Date
+  user_create Int
+  user_update Int?
+  update_date DateTime? @db.DateTime(0)
+}
+
+model news_copy1 {
+  id          Int       @id @default(autoincrement())
+  name        String?   @db.VarChar(255)
+  name_en     String    @db.VarChar(255)
+  pic         String    @db.VarChar(255)
+  detail      String?   @db.Text
+  detail_en   String    @db.Text
+  datein      DateTime  @db.Date
+  user_create Int
+  user_update Int?
+  update_date DateTime? @db.DateTime(0)
+}
+
+model news_knowledge {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  name_en     String    @db.VarChar(255)
+  pic         String    @db.VarChar(30)
+  detail      String    @db.Text
+  detail_en   String    @db.Text
+  datein      DateTime  @db.Date
+  user_create Int
+  user_update Int?
+  update_date DateTime? @db.DateTime(0)
+}
+
+model payment {
+  pay_id     Int     @id @default(autoincrement())
+  book_id    Int?
+  paid       String? @db.VarChar(255)
+  price      String? @db.VarChar(255)
+  start_date String? @db.VarChar(255)
+  p_time     String? @db.VarChar(255)
+  comment    String? @db.LongText
+  f_name     String? @db.VarChar(255)
+  tel        String? @db.VarChar(255)
+  email      String? @db.VarChar(255)
+  pic        String? @db.VarChar(255)
+}
+
+model procurement_group {
+  id_g     Int    @id @default(autoincrement())
+  topic    String @db.VarChar(255)
+  topic_en String @db.VarChar(255)
+  stat     Int
+}
+
+model product_order {
+  id             Int       @id @default(autoincrement()) @db.UnsignedInt
+  fname          String?   @db.VarChar(255)
+  pic            String?   @db.VarChar(255)
+  phone          String?   @db.VarChar(255)
+  email          String?   @db.VarChar(255)
+  address        String?   @db.LongText
+  payment_status Int?      @default(0)
+  qty            Int?      @default(0)
+  date_pay       DateTime? @db.DateTime(0)
+}
+
+model purchase {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(255)
+  detail   String   @db.Text
+  datein   DateTime @db.Date
+  pstatus  Int      @default(1) @db.TinyInt
+  group_id Int
+  pin      Boolean  @default(false)
+  goto_url String?  @db.VarChar(500)
+  show_y   String?  @db.VarChar(4)
+}
