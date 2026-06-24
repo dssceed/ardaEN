@@ -1,0 +1,6 @@
+DATABASE_HOST="127.0.0.1"
+DATABASE_USER="root"
+DATABASE_PASSWORD="arda_root_password"
+DATABASE_NAME="arda_en"
+DATABASE_PORT="3306"
+DATABASE_URL="mysql://root:arda_root_password@127.0.0.1:3306/arda_en"
