@@ -5,6 +5,10 @@ import { PrismaClient } from "../generated/prisma/client";
 const globalForPrisma = globalThis as unknown as {
     prisma: PrismaClient | undefined;
 };
+// ถอดรหัสข้อความจาก Env กลับมาเป็นกุญแจ SSL
+const sslCert = process.env.DB_SSL_CERT
+    ? Buffer.from(process.env.DB_SSL_CERT, 'base64').toString('ascii')
+    : undefined;
 
 const adapter = new PrismaMariaDb({
     host: process.env.DATABASE_HOST,
@@ -13,6 +17,13 @@ const adapter = new PrismaMariaDb({
     database: process.env.DATABASE_NAME,
     connectionLimit: 5,
     allowPublicKeyRetrieval: true,
+    // สำหรับ Prisma Client ดั้งเดิม (ไม่ใช่ Edge/Driver Adapter)
+    // ให้แนบ cert เข้าไปตรงๆ แบบนี้ได้เลยครับ
+    ...(sslCert && {
+        engineOptions: {
+            cert: sslCert
+        }
+    })
 });
 
 export const prisma =
