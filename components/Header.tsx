@@ -30,12 +30,16 @@ export default function Header() {
     <header className="flex flex-col w-full font-sans shadow-sm">
       {/* 1. Top Bar (Blue) */}
       <div className="bg-[#002060] py-3 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center text-white">
-        <div className="flex items-center gap-4 bg-white px-4 py-2 rounded">
-          {/* Logo Placeholder */}
-          <div className="text-[#002060] font-bold text-2xl tracking-tighter flex items-center">
-            สวก.<span className="text-gray-500 font-light text-xl border-l-[1.5px] border-gray-400 pl-1 ml-1">ARDA</span>
-          </div>
-        </div>
+        <Link href="/" className="flex items-center bg-white px-4 py-2 rounded">
+          <Image
+            src="/main/LOGO.jpg"
+            alt="ARDA Logo"
+            width={600}
+            height={227}
+            priority
+            className="h-12 w-auto object-contain"
+          />
+        </Link>
         <div className="text-center md:text-right mt-3 md:mt-0">
           <h1 className="text-base md:text-lg font-bold tracking-wide">Agricultural Research Development Agency</h1>
           <p className="text-sm md:text-base font-medium">(Public Organization)</p>
@@ -102,10 +106,7 @@ export default function Header() {
               </ul>
             </li>
             <li>
-              <Link href="/news" className="inline-block py-4 hover:text-[#002060] transition-colors uppercase tracking-wide">NEWS</Link>
-            </li>
-            <li>
-              <Link href="/grants" className="inline-block py-4 hover:text-[#002060] transition-colors uppercase tracking-wide">RESEARCH GRANTS</Link>
+              <Link href="/grants" className="inline-block py-4 hover:text-[#002060] transition-colors uppercase tracking-wide">Research Impact & Results</Link>
             </li>
             <li>
               <Link href="/scholarship" className="inline-block py-4 hover:text-[#002060] transition-colors uppercase tracking-wide">SCHOLARSHIP</Link>

@@ -41,9 +41,9 @@ export default function AboutPage() {
               <div className="w-full relative h-[220px] rounded-sm overflow-hidden shadow-md">
                 <Image src="/arda_building.jfif" alt="ARDA Building" fill className="object-cover" />
               </div>
-              <div className="w-[80%] relative h-[160px]">
+              {/* <div className="w-[80%] relative h-[160px]">
                 <Image src="/ribbon_cutting.png" alt="Establishment Ceremony" fill className="object-contain" />
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

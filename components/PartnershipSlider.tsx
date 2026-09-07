@@ -1,6 +1,20 @@
 'use client';
 
 import React, { useRef } from 'react';
+import Image from 'next/image';
+
+const partnerImages = [
+  '/partnership/1.jpg',
+  '/partnership/2.png',
+  '/partnership/3.jpg',
+  '/partnership/4.jpg',
+  '/partnership/5.png',
+  '/partnership/6.png',
+  '/partnership/7.png',
+  '/partnership/8.jpg',
+  '/partnership/9.jpg',
+  '/partnership/10.png',
+];
 
 export default function PartnershipSlider() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -54,14 +68,18 @@ export default function PartnershipSlider() {
             className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-12 pb-8 pt-4 px-4 no-scrollbar scroll-smooth" 
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div 
-                key={item} 
-                className="shrink-0 snap-center w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#e3f2fd] flex items-center justify-center overflow-hidden hover:scale-105 transition-transform cursor-pointer shadow-sm border-[4px] border-white"
+            {partnerImages.map((src, index) => (
+              <div
+                key={src}
+                className="shrink-0 snap-center w-32 h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center overflow-hidden hover:scale-105 transition-transform cursor-pointer shadow-sm border-[4px] border-white relative"
               >
-                <svg className="w-16 h-16 text-blue-200" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
-                </svg>
+                <Image
+                  src={src}
+                  alt={`Partner ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 128px, 160px"
+                  className="object-cover"
+                />
               </div>
             ))}
           </div>
@@ -79,7 +97,7 @@ export default function PartnershipSlider() {
         </button>
       </div>
 
-      <p className="text-center text-gray-500 mt-2 font-medium">sliding</p>
+      {/* <p className="text-center text-gray-500 mt-2 font-medium">sliding</p> */}
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import PartnershipSlider from '@/components/PartnershipSlider';
+import GrantSlider from '@/components/GrantSlider';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import React from 'react';
@@ -143,20 +144,12 @@ export default async function Home() {
       {/* Section 3: Research grants & Opportunities */}
       {/* (Rest of the code remains the same as before...) */}
       <section className="w-full flex flex-col items-center pt-8 md:pt-16">
-        <h2 className="sr-only">Research Grants & Opportunities</h2>
+        <h2 className="text-[28px] md:text-[40px] font-bold text-black text-center mb-10 md:mb-14 font-sans tracking-wide">
+          Research Grants & Opportunities
+        </h2>
 
-        {/* Part 3.1: 3 Red Boxes */}
-        <div className="w-full max-w-5xl px-4 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mb-16 relative">
-          <div className="bg-[#ff5b5b] w-64 h-64 flex items-center justify-center text-xl font-bold text-black shadow-md cursor-pointer hover:scale-105 transition-transform">
-            RU
-          </div>
-          <div className="bg-[#ff5b5b] w-64 h-[340px] flex items-center justify-center text-xl font-bold text-black shadow-md md:-mt-10 md:-mb-10 z-10 cursor-pointer hover:scale-105 transition-transform">
-            SF
-          </div>
-          <div className="bg-[#ff5b5b] w-64 h-64 flex items-center justify-center text-xl font-bold text-black text-center shadow-md cursor-pointer hover:scale-105 transition-transform">
-            Targeted<br />Fund
-          </div>
-        </div>
+        {/* Part 3.1: Grant Slider (auto-slide) */}
+        <GrantSlider />
 
         {/* Part 3.2: ARDA CADS Banner Placeholder */}
         <div className="w-full max-w-4xl px-4 mt-8 mb-20 relative">

@@ -3,7 +3,7 @@ services:
     image: mysql:8.0
     container_name: arda_db
     ports:
-      - "3306:3306" # ยิง Port ออกมาข้างนอกเพื่อให้ Prisma (ใน WSL) เข้าถึงได้
+      - "3307:3306" # ยิง Port ออกมาข้างนอกเพื่อให้ Prisma (ใน WSL) เข้าถึงได้
     environment:
       MYSQL_ROOT_PASSWORD: arda_root_password
       MYSQL_DATABASE: arda_en
